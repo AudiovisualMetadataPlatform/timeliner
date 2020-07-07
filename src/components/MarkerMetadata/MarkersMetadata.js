@@ -101,19 +101,19 @@ export default function MarkersMetadata(props) {
             height: '30px !important',
             paddingTop: 0,
             paddingBottom: 0,
-            padding: '10px 10px 0 0',
+            // padding: '0px 10px',
           },
           headerSytle: {
             height: '30px !important',
             paddingTop: 0,
             paddingBottom: 0,
-            padding: '10px 10px 0 0',
+            // padding: '0px 10px',
           },
           rowStyle: {
             height: '30px !important',
             paddingTop: 0,
             paddingBottom: 0,
-            padding: '10px 10px 0 0',
+            // padding: '0px 10px',
           },
       }}
       actions={[
