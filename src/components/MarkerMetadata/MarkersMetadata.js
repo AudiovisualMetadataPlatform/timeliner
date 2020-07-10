@@ -3,8 +3,6 @@ import React from 'react';
 import formatDate from 'date-fns/format';
 import MaterialTable from 'material-table';
 import ArrowForward from '@material-ui/icons/ArrowForward';
-// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-// import { withStyles, makeStyles } from '@material-ui/styles';
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -45,41 +43,6 @@ const tableIcons = {
     GotoArrow: forwardRef((props, ref) => <ArrowForward {...props} ref={ref} color='action' />),
   };
 
-// const useStyles = makeStyles(() => ({
-//   root: {
-//     paddingTop: 1,
-//     paddingBottom: 1,
-//     height: 25    
-//   }
-// }));
-
-// const muiTheme = createMuiTheme({
-//   overrides: {
-//     MuiSvgIcon: {
-//       root: {
-//         fontSize: '20px !important',
-//       },
-//     },
-//     MuiIconButton: {
-//       root: {
-//         paddingTop: '0 !important',
-//         paddingBottom: '0 !important',
-//       },
-//     },
-//     MuiTablePagination: {
-//       toolbar: {
-//         height: '24px !important',
-//         minHeight: '24px !important',
-//       },
-//     },
-//     MuiTableRow: {
-//       root: {
-//         height: '24px !important',
-//       },
-//     },
-//   },
-// });
-
 export default function MarkersMetadata(props) {
   const {
     markers,
@@ -89,7 +52,6 @@ export default function MarkersMetadata(props) {
   } = props;
 
   const { useState } = React;
-  // const classes = useStyles();
 
 
   const [columns, setColumns] = useState([
@@ -114,7 +76,6 @@ export default function MarkersMetadata(props) {
   };
 
   return (
-    // <MaterialTable className={classes.root}
     <MaterialTable
       icons={tableIcons}
       title="Named Entities"
@@ -129,19 +90,16 @@ export default function MarkersMetadata(props) {
             height: '30px !important',
             paddingTop: 0,
             paddingBottom: 0,
-            // padding: '0px 10px',
           },
           headerSytle: {
             height: '30px !important',
             paddingTop: 0,
             paddingBottom: 0,
-            // padding: '0px 10px',
           },
           rowStyle: {
             height: '30px !important',
             paddingTop: 0,
             paddingBottom: 0,
-            // padding: '0px 10px',
           },
       }}
       actions={[
