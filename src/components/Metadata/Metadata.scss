@@ -5,7 +5,7 @@
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0px;
-  min-height: 500px;
+  min-height: 600px;
 
   &__annotations {
     flex: 1;
@@ -50,9 +50,27 @@
 
   &__markers {
     padding: 0 8px;
-    width: 1200px; 
+    width: 800px; 
     height: 600px; 
     overflow-y: auto;
   }
 }
 
+
+.MuiSvgIcon-root-50 {
+  font-size: 20px !important;
+}
+
+.MuiIconButton-root-41 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.MuiTablePagination-toolbar-324 {
+    height: 24px !important;
+    min-height: 24px !important;
+}
+
+.MuiTableRow-root-299 {
+  height: 24px !important;
+}

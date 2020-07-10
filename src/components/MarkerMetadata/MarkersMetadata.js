@@ -95,7 +95,7 @@ export default function MarkersMetadata(props) {
       options={{
           sorting: true,
           actionsColumnIndex: -1,
-          pageSize: 10,
+          pageSize: 20,
           padding: "dense",
           cellStyle: {
             height: '30px !important',

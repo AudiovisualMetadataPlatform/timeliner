@@ -5,8 +5,8 @@ import PauseCircleOutline from '@material-ui/icons/PauseCircleOutline';
 import TransportBarButton from '../TransportBarButton/TransportBarButton';
 
 const PLAY_PAUSE_BUTTON_SIZE = {
-  width: 48,
-  height: 48,
+  width: 32,
+  height: 32,
 };
 
 const PlayPauseButton = props => (
