@@ -3,6 +3,7 @@ import React from 'react';
 import formatDate from 'date-fns/format';
 import MaterialTable from 'material-table';
 import ArrowForward from '@material-ui/icons/ArrowForward';
+// import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 // import { withStyles, makeStyles } from '@material-ui/styles';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -51,6 +52,33 @@ const tableIcons = {
 //     height: 25    
 //   }
 // }));
+
+// const muiTheme = createMuiTheme({
+//   overrides: {
+//     MuiSvgIcon: {
+//       root: {
+//         fontSize: '20px !important',
+//       },
+//     },
+//     MuiIconButton: {
+//       root: {
+//         paddingTop: '0 !important',
+//         paddingBottom: '0 !important',
+//       },
+//     },
+//     MuiTablePagination: {
+//       toolbar: {
+//         height: '24px !important',
+//         minHeight: '24px !important',
+//       },
+//     },
+//     MuiTableRow: {
+//       root: {
+//         height: '24px !important',
+//       },
+//     },
+//   },
+// });
 
 export default function MarkersMetadata(props) {
   const {

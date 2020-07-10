@@ -109,6 +109,30 @@ class VariationsMainView extends React.Component {
           minHeight: 36,
         },
       },
+      overrides: {
+        MuiSvgIcon: {
+          root: {
+            fontSize: '20px !important',
+          },
+        },
+        MuiIconButton: {
+          root: {
+            paddingTop: '0 !important',
+            paddingBottom: '0 !important',
+          },
+        },
+        MuiTablePagination: {
+          toolbar: {
+            height: '24px !important',
+            minHeight: '24px !important',
+          },
+        },
+        MuiTableRow: {
+          root: {
+            height: '24px !important',
+          },
+        },
+      },
     });
   }
 
