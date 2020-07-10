@@ -70,7 +70,9 @@ class CurrentTimeIndicator extends Component {
   }
 
   updateTimeFormat(time, runtime) {
-    const date = new Date(time);
+    const timezoneOffset = new Date().getTimezoneOffset() * 60 * 1000;
+    const date = new Date(time + timezoneOffset);
+
     if (date.toString() === 'Invalid Date') {
       return this.setState({
         currentFormattedTime: formatDate(new Date(0), 'hh:mm:ss'),

@@ -43,7 +43,6 @@ const tableIcons = {
     GotoArrow: forwardRef((props, ref) => <ArrowForward {...props} ref={ref} color='action' />),
   };
 
-
 export default function MarkersMetadata(props) {
   const {
     markers,
@@ -54,10 +53,11 @@ export default function MarkersMetadata(props) {
 
   const { useState } = React;
 
+
   const [columns, setColumns] = useState([
     { title: 'Text', field: 'label', editable: 'onUpdate' },
     { title: 'Type', field: 'summary', editable: 'onUpdate' },
-    { title: 'Start Time', field: 'time', editable: 'never', render: rowData => timeToLabel(rowData.time) },
+    { title: 'Time', field: 'time', editable: 'never', render: rowData => timeToLabel(rowData.time) },
   ]);
 
   const [data, setData] = useState(markers);
@@ -83,7 +83,24 @@ export default function MarkersMetadata(props) {
       data={markers}
       options={{
           sorting: true,
-          actionsColumnIndex: -1
+          actionsColumnIndex: -1,
+          pageSize: 20,
+          padding: "dense",
+          cellStyle: {
+            height: '30px !important',
+            paddingTop: 0,
+            paddingBottom: 0,
+          },
+          headerSytle: {
+            height: '30px !important',
+            paddingTop: 0,
+            paddingBottom: 0,
+          },
+          rowStyle: {
+            height: '30px !important',
+            paddingTop: 0,
+            paddingBottom: 0,
+          },
       }}
       actions={[
         {
@@ -95,6 +112,14 @@ export default function MarkersMetadata(props) {
         }
       ]}      
       editable={{
+        // onRowAdd: (newData) =>
+        //   new Promise((resolve, reject) => {
+        //     setTimeout(() => {
+        //       onSaveMarker(newData);
+        //       setData([...markers]);
+        //       resolve();
+        //     }, 1000)
+        //   }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve, reject) => {
             setTimeout(() => {

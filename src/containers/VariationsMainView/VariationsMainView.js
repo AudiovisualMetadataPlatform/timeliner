@@ -15,6 +15,7 @@ import VerifyDialog from '../../components/VerifyDialog/VerifyDialog';
 import BubbleEditor from '../BubbleEditor/BubbleEditor';
 import Audio from '../Audio/Audio';
 
+
 import {
   splitRangeAt,
   groupSelectedRanges,
@@ -58,6 +59,7 @@ import {
 } from '../../actions/viewState';
 import {
   addMarkerAtTime,
+  addMarkerPopulated,
   deleteMarker,
   updateMarker,
 } from '../../actions/markers';
@@ -105,6 +107,30 @@ class VariationsMainView extends React.Component {
       mixins: {
         toolbar: {
           minHeight: 36,
+        },
+      },
+      overrides: {
+        MuiSvgIcon: {
+          root: {
+            fontSize: '20px !important',
+          },
+        },
+        MuiIconButton: {
+          root: {
+            paddingTop: '0 !important',
+            paddingBottom: '0 !important',
+          },
+        },
+        MuiTablePagination: {
+          toolbar: {
+            height: '24px !important',
+            minHeight: '24px !important',
+          },
+        },
+        MuiTableRow: {
+          root: {
+            height: '24px !important',
+          },
         },
       },
     });
@@ -167,7 +193,7 @@ class VariationsMainView extends React.Component {
 
   splitRange = () => this.props.splitRangeAt(this.props.currentTime);
 
-  addMarker = () => this.props.addMarkerAtTime(this.props.currentTime);
+  // addMarker = () => this.props.addMarkerAtTime(this.props.currentTime);
 
   getAuthService = () => {
     const annotationPages = this.props.annotationPages;
@@ -272,7 +298,8 @@ class VariationsMainView extends React.Component {
                     ? this.deleteRanges(selectedRanges)
                     : null
                 }
-                onAddMarker={this.addMarker}
+                onDeleteMarker={this.props.deleteMarker}
+                onAddMarker={this.props.addMarkerPopulated}
                 zoom={zoom}
                 zoomIn={this.props.zoomIn}
                 zoomOut={this.props.zoomOut}
@@ -378,6 +405,7 @@ VariationsMainView.propTypes = {
   importDocument: PropTypes.func.isRequired,
   exportDocument: PropTypes.func.isRequired,
   addMarkerAtTime: PropTypes.func.isRequired,
+  addMarkerPopulated: PropTypes.func.isRequired,
   saveProject: PropTypes.func.isRequired,
   settings: PropTypes.object,
   zoom: PropTypes.number.isRequired,
@@ -459,6 +487,7 @@ const mapDispatchToProps = {
   deleteMarker,
   // markers
   addMarkerAtTime,
+  addMarkerPopulated,
   // Undo
   onUndo: undoActions.undo,
   onRedo: undoActions.redo,

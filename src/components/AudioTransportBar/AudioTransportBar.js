@@ -18,6 +18,8 @@ import Delete from '@material-ui/icons/Delete';
 import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import Add from '@material-ui/icons/Add';
 
+import MarkerModal from '../MarkerMetadata/MarkerModal';
+
 class AudioTransportBar extends Component {
   static propTypes = {
     /** Boolean value for the current playing state */
@@ -44,6 +46,8 @@ class AudioTransportBar extends Component {
     onGroupBubble: PropTypes.func,
     /** Deletes the selected bubble */
     onDeleteBubble: PropTypes.func,
+    /** Deletes the selected marker */
+    onDeleteMarker: PropTypes.func,
   };
 
   keyboardListener = e => {
@@ -79,11 +83,14 @@ class AudioTransportBar extends Component {
     document.removeEventListener('keydown', this.keyboardListener);
   }
 
+  markerModalVisible = false;
+
   render() {
     const {
       onAddBubble,
       onGroupBubble,
       onDeleteBubble,
+      onDeleteMarker,
       onAddMarker,
       onPreviousBubble,
       onScrubBackwards,
@@ -102,12 +109,18 @@ class AudioTransportBar extends Component {
       resetZoom,
     } = this.props;
 
+    const displayMarkerModal = (visible) => {
+      this.markerModalVisible = visible;
+      this.forceUpdate();
+      console.log("calling displayMarkerModal in AudioTransport, markerModalVisible = " + this.markerModalVisible);
+    };
+
     return (
       <div className="audio-transport-bar">
         <Grid container direction="row" alignItems="center">
           <Grid item xs={4} className="audio-transport-bar__actions">
             <CurrentTimeIndicator currentTime={currentTime} runtime={runTime} />
-            <PrimaryButton
+            {/* <PrimaryButton
               disabled={!onAddBubble}
               onClick={onAddBubble}
               style={{ padding: 4 }}
@@ -124,10 +137,11 @@ class AudioTransportBar extends Component {
               >
                 <Add />
               </Tooltip>
-            </PrimaryButton>
+            </PrimaryButton> */}
+            
             <PrimaryButton
               disabled={!onAddMarker}
-              onClick={onAddMarker}
+              onClick={() => displayMarkerModal(true)}
               style={{ marginLeft: 16, padding: 4 }}
               size="small"
               classes={{
@@ -144,7 +158,14 @@ class AudioTransportBar extends Component {
               </Tooltip>
             </PrimaryButton>
 
-            <PrimaryButton
+            <MarkerModal
+              visible={this.markerModalVisible}
+              displayMarkerModal={displayMarkerModal}
+              currentTime={currentTime}
+              onAddMarker={onAddMarker}
+            />
+
+            {/* <PrimaryButton
               disabled={!onGroupBubble}
               onClick={onGroupBubble}
               style={{ marginLeft: 16, padding: 4 }}
@@ -161,10 +182,11 @@ class AudioTransportBar extends Component {
               >
                 <GroupWork />
               </Tooltip>
-            </PrimaryButton>
-            <PrimaryButton
-              disabled={!onDeleteBubble}
-              onClick={onDeleteBubble}
+            </PrimaryButton> */}
+
+            {/* <PrimaryButton
+              disabled={!onDeleteMarker}
+              onClick={onDeleteMarker}
               style={{ marginLeft: 16, padding: 4 }}
               size="small"
               classes={{
@@ -174,12 +196,12 @@ class AudioTransportBar extends Component {
             >
               <Tooltip
                 classes={{ tooltip: 'audio-transport-bar__tooltip' }}
-                title="Delete bubbles"
-                aria-label="Delete bubbles"
+                title="Delete marker"
+                aria-label="Delete marker"
               >
                 <Delete />
               </Tooltip>
-            </PrimaryButton>
+            </PrimaryButton> */}
           </Grid>
           <Grid item xs={4}>
             <div className="audio-transport-bar__buttons">
