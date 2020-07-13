@@ -63,7 +63,6 @@ export default function MarkersMetadata(props) {
       editable: 'never', 
       render: rowData => timeToLabel(rowData.time),
       customFilterAndSearch: (term, rowData) => timeToLabel(rowData.time).includes(term),
-      // customFilterAndSearch: (term, rowData) => term == timeToLabel(rowData.time),
     }, 
   ]);
 
