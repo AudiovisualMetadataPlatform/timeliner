@@ -57,7 +57,14 @@ export default function MarkersMetadata(props) {
   const [columns, setColumns] = useState([
     { title: 'Text', field: 'label', editable: 'onUpdate' },
     { title: 'Type', field: 'summary', editable: 'onUpdate' },
-    { title: 'Time', field: 'time', editable: 'never', render: rowData => timeToLabel(rowData.time) },
+    { 
+      title: 'Time', 
+      field: 'time', 
+      editable: 'never', 
+      render: rowData => timeToLabel(rowData.time),
+      customFilterAndSearch: (term, rowData) => timeToLabel(rowData.time).includes(term),
+      // customFilterAndSearch: (term, rowData) => term == timeToLabel(rowData.time),
+    }, 
   ]);
 
   const [data, setData] = useState(markers);
@@ -83,6 +90,7 @@ export default function MarkersMetadata(props) {
       data={markers}
       options={{
           sorting: true,
+          filtering: true,
           actionsColumnIndex: -1,
           pageSize: 20,
           padding: "dense",
