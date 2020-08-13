@@ -1,11 +1,11 @@
 .timeline-scrubber {
   position: relative;
-  height: 8px;
+  height: 6px;
   z-index: 10;
   box-sizing: border-box;
   border-bottom: 2px solid transparent;
   border-top: 2px solid transparent;
-  background: #eeeeee;
+  background: #aaa;
   cursor: pointer;
   transition: width .3s, margin-left .3s;
 

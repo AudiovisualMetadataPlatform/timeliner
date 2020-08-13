@@ -161,6 +161,13 @@ class TimelineScrubber extends Component {
     const { isHovering, hoverTime } = this.state;
 
     return (
+      <div style={{
+          background: '#ddd',
+          borderTop: 'solid',
+          borderBottom: 'solid',
+          height: '36px',
+        }}
+      >
       <div
         ref={ref => (this.container = ref)}
         className={$style}
@@ -173,6 +180,7 @@ class TimelineScrubber extends Component {
         style={{
           marginLeft: -x,
           width: width * zoom,
+          position: 'relative',
         }}
       >
         {Object.values(markers).map((marker, markerIndex) => (
@@ -243,6 +251,7 @@ class TimelineScrubber extends Component {
         >
           {hoverTime}
         </div>
+      </div>
       </div>
     );
   }

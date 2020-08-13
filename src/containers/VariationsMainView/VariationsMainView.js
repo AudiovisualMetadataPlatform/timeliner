@@ -132,6 +132,14 @@ class VariationsMainView extends React.Component {
             height: '24px !important',
           },
         },
+        MuiTableCell: {
+          body: {
+            fontSize: '0.77rem',
+          },
+          head: {
+            fontSize: '0.72rem',
+          },
+        },
       },
     });
   }
