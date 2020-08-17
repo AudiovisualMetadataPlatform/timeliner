@@ -491,11 +491,11 @@ const mapDispatchToProps = {
   groupSelectedRanges,
   deleteRanges: scheduleDeleteRanges,
   updateRange,
-  updateMarker,
-  deleteMarker,
   // markers
   addMarkerAtTime,
   addMarkerPopulated,
+  updateMarker,
+  deleteMarker,
   // Undo
   onUndo: undoActions.undo,
   onRedo: undoActions.redo,

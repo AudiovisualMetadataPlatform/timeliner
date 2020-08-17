@@ -354,9 +354,12 @@ function saveResource(url, content) {
 }
 
 function* saveProject() {
-  const state = yield select();
+  const state = yield select();  
   const callback = yield select(s => s.viewState.callback);
   const resource = yield select(s => s.viewState.resource);
+
+  console.log("project saved:" + state.markers.saved);
+  
   if (resource !== callback) {
     const yes = yield showConfirmation(
       'This timeline isn’t yours. Saving will create a personal copy of this timeline that includes any changes you’ve made. Proceed?'

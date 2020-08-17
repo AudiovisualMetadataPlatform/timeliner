@@ -184,8 +184,10 @@ class AudioTransportBar extends Component {
               </Tooltip>
             </PrimaryButton> */}
 
+            {/* TODO below is to delete marker from scrubber, however we don't know how to select a marker on the scrubber */}
             {/* <PrimaryButton
-              disabled={!onDeleteMarker}
+              // disabled={!onDeleteMarker}
+              disabled="true"
               onClick={onDeleteMarker}
               style={{ marginLeft: 16, padding: 4 }}
               size="small"
@@ -201,7 +203,7 @@ class AudioTransportBar extends Component {
               >
                 <Delete />
               </Tooltip>
-            </PrimaryButton> */}
+            </PrimaryButton>              */}
           </Grid>
           <Grid item xs={4}>
             <div className="audio-transport-bar__buttons">
