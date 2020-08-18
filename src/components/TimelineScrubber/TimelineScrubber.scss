@@ -2,10 +2,11 @@
   position: relative;
   height: 6px;
   z-index: 10;
+  margin-bottom: 2px;
   box-sizing: border-box;
   border-bottom: 2px solid transparent;
   border-top: 2px solid transparent;
-  background: #aaa;
+  background: #888;
   cursor: pointer;
   transition: width .3s, margin-left .3s;
 

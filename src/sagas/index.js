@@ -355,7 +355,7 @@ function saveResource(url, content) {
 }
 
 function* saveProject() {
-  console.log("Inside saveProject:");
+  // console.log("Inside saveProject:");
   const state = yield select();  
   const callback = yield select(s => s.viewState.callback);
   const resource = yield select(s => s.viewState.resource);
@@ -371,22 +371,29 @@ function* saveProject() {
   const outputJSON = exporter(state);
 
   try {
-    console.log("Saving project:" + outputJSON);
+    // // console.log("Saving project:" + outputJSON);
+
+    // TODO 
+    // Logically, setSavedMarkers should be done after saveResource completes in success;
+    // however, the callback to AMPPD currently returns error "Refused to get unsafe header "location" due to missing security feature 
+    // (even though the save actually completes in success on server); this means that setSavedMarkers after saveResource 
+    // will not be executed as the control would go into the catch block; below is a tmp work-around for now.
     yield put(setSavedMarkers());
-    console.log("Done setSavedMarkers:" + state.markers.saved);
+    console.log("Successfully saved project, setSavedMarkers: " + state.markers.saved);
 
     yield call(saveResource, callback, outputJSON);
-    console.log("Done saveResource");
+    // console.log("Done saveResource");
     yield showConfirmation('Saved Successfully.', false);
-    console.log("Done showConfirmation");
+    // console.log("Done showConfirmation");
+
     // TODO 
     // Theoretically, we should set saved status for all other edits as well, such as project metadata; 
     // for AMPPD we only allow edit on markers, so set saved status for markers is good enough for now.
     // set saved status for markers   
     yield put(setSavedMarkers());
-    console.log("Done setSavedMarkers:" + state.markers.saved);
+    console.log("Successfully saved project, setSavedMarkers: " + state.markers.saved);
   } catch (result) {
-    console.log("inside catch result: " + result);
+    console.log("Caught error while saving project: " + result);
     if (result.hasOwnProperty('redirect_location')) {
       top.window.location = result.redirect_location;
       return;

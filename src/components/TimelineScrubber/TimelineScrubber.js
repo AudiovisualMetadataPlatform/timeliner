@@ -7,6 +7,7 @@ import TimelineMarker from '../TimelineMarker/TimelineMarker';
 import PlayHead from '../Playhead/Playhead';
 
 import './TimelineScrubber.scss';
+import { FileText } from 'react-feather';
 
 const $style = BEM.block('timeline-scrubber');
 
@@ -162,10 +163,14 @@ class TimelineScrubber extends Component {
 
     return (
       <div style={{
+          height: '36px',
           background: '#ddd',
           borderTop: 'solid',
           borderBottom: 'solid',
-          height: '36px',
+          borderColor: 'mediumblue',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
         }}
       >
       <div
