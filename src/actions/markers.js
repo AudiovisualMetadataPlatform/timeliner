@@ -10,6 +10,7 @@ import {
   CLEAR_MARKERS,
   DELETE_MARKERS,
   CREATE_MARKER,
+  SETSAVED_MARKERS,
 } from '../constants/markers';
 
 const generateNewId = () => `marker-${new Date().getTime()}`;
@@ -86,4 +87,8 @@ export const selectMarker = markerId => ({
 export const deselectMarker = markerId => ({
   type: DESELECT_MARKER,
   payload: { id: markerId },
+});
+
+export const setSavedMarkers = () => ({
+  type: SETSAVED_MARKERS,
 });

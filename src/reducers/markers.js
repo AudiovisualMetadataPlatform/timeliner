@@ -11,6 +11,7 @@ import {
   CLEAR_MARKERS,
   DELETE_MARKERS,
   CREATE_MARKER,
+  SETSAVED_MARKERS,
 } from '../constants/markers';
 
 export const DEFAULT_STATE = {
@@ -31,6 +32,7 @@ export default function reducer(state = DEFAULT_STATE, action) {
   switch (action.type) {
     case UPDATE_MARKER:
       console.log("update marker: " + action.payload.id);
+      console.log("saved status: " + state.saved);
       if (!action.payload.id) {
         return state;
       }
@@ -43,14 +45,14 @@ export default function reducer(state = DEFAULT_STATE, action) {
             [MARKER.TIME, { $set: action.payload.time }],
           ].reduce(filterUndefinedSets, {}),
         },
-        saved: { $set: false },
+        saved: { $set: false }, // unset saved status after each edit
       });
     case CLEAR_MARKERS:
       console.log("clear markers: ");
       return update(state, {
         list: { $set: {} },
         selected: { $set: [] },
-        saved: { $set: false },
+        saved: { $set: false }, // unset saved status after each edit
       });
     case CREATE_MARKER:
       console.log("create marker: " + action.payload.marker.id);
@@ -58,12 +60,12 @@ export default function reducer(state = DEFAULT_STATE, action) {
         list: {
           [action.payload.marker.id]: { $set: action.payload.marker },
         },
-        saved: { $set: false },
+        saved: { $set: false }, // unset saved status after each edit
       });
     case IMPORT_MARKERS:
       console.log("import markers: ");
       return update(state, {
-        saved: { $set: false },
+        saved: { $set: false }, // unset saved status after each edit
         list: action.payload.markers.reduce((acc, next) => {
           if (next.id) {
             acc[next.id] = { $set: next };
@@ -75,13 +77,13 @@ export default function reducer(state = DEFAULT_STATE, action) {
       console.log("delete markers: " + action.payload.ids);
       return update(state, {
         list: { $unset: action.payload.ids },
-        saved: { $set: false },
+        saved: { $set: false }, // unset saved status after each edit
       });
     case DELETE_MARKER:
       console.log("delete marker: " + action.payload.id);
       return update(state, {
         list: { $unset: [action.payload.id] },
-        saved: { $set: false },
+        saved: { $set: false }, // unset saved status after each edit
       });
     case SHOW_MARKERS:
       return update(state, {
@@ -102,6 +104,11 @@ export default function reducer(state = DEFAULT_STATE, action) {
       }
       return update(state, {
         selected: { $splice: [[state.selected.indexOf(action.payload.id), 1]] },
+      });
+    case SETSAVED_MARKERS:
+      console.log("set saved markers: " + state.saved);
+      return update(state, {
+        saved: { $set: true },
       });
     default:
       return state;

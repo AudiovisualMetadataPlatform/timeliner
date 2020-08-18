@@ -63,6 +63,7 @@ import {
   hideMarkers,
   importMarkers,
   showMarkers,
+  setSavedMarkers,
 } from '../actions/markers';
 
 const getDuration = state => state.viewState.runTime;
@@ -354,12 +355,11 @@ function saveResource(url, content) {
 }
 
 function* saveProject() {
+  console.log("Inside saveProject:");
   const state = yield select();  
   const callback = yield select(s => s.viewState.callback);
   const resource = yield select(s => s.viewState.resource);
 
-  console.log("project saved:" + state.markers.saved);
-  
   if (resource !== callback) {
     const yes = yield showConfirmation(
       'This timeline isn’t yours. Saving will create a personal copy of this timeline that includes any changes you’ve made. Proceed?'
@@ -371,9 +371,22 @@ function* saveProject() {
   const outputJSON = exporter(state);
 
   try {
+    console.log("Saving project:" + outputJSON);
+    yield put(setSavedMarkers());
+    console.log("Done setSavedMarkers:" + state.markers.saved);
+
     yield call(saveResource, callback, outputJSON);
+    console.log("Done saveResource");
     yield showConfirmation('Saved Successfully.', false);
+    console.log("Done showConfirmation");
+    // TODO 
+    // Theoretically, we should set saved status for all other edits as well, such as project metadata; 
+    // for AMPPD we only allow edit on markers, so set saved status for markers is good enough for now.
+    // set saved status for markers   
+    yield put(setSavedMarkers());
+    console.log("Done setSavedMarkers:" + state.markers.saved);
   } catch (result) {
+    console.log("inside catch result: " + result);
     if (result.hasOwnProperty('redirect_location')) {
       top.window.location = result.redirect_location;
       return;

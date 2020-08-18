@@ -262,6 +262,7 @@ class VariationsMainView extends React.Component {
             onRedo={this.props.onRedo}
             onUndo={this.props.onUndo}
             onSave={this.getOnSave()}
+            saved={this.props.projectSaved}
             onTitleChange={() => {}}
             hasResource={this.props.hasResource}
             noHeader={this.props.noHeader}
@@ -445,6 +446,10 @@ const mapStateProps = state => ({
   showMetadataEditor: state.viewState[VIEWSTATE.PROJECT_METADATA_EDITOR_OPEN],
   canUndo: state.undoHistory.undoQueue.length > 0,
   canRedo: state.undoHistory.redoQueue.length > 0,
+  // TODO 
+  // Theoretically, projectSaved should be the logic and of saved statuses on all editable components; 
+  // for AMPPD we only allow edit on markers, so just checking saved status on markers is good enough for now
+  projectSaved: state.markers.saved,
   markers: state.markers.visible ? state.markers.list : {},
   zoom: state.viewState[VIEWSTATE.ZOOM],
   //settings
