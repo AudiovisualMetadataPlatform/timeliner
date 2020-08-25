@@ -165,9 +165,8 @@ class TimelineScrubber extends Component {
       <div style={{
           height: '36px',
           background: '#ddd',
-          borderTop: 'solid',
-          borderBottom: 'solid',
-          borderColor: 'mediumblue',
+          borderTop: '1px solid black',
+          borderBottom: '1px solid black',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
