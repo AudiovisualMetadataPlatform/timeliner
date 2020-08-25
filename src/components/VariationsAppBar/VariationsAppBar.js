@@ -54,6 +54,8 @@ const VariationsAppBar = props => (
         {props.onSave ? (
           <IconButton
             color="inherit"
+            id="saveProject"
+            disabled={props.saved}
             onClick={props.onSave}
             title={props.onSave ? 'Save timeline' : 'No backend set up to save'}
           >

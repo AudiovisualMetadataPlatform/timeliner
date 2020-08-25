@@ -86,23 +86,25 @@ const ProjectMetadataDisplay = props => (
             Start this timeline over
           </Button>
         </Grid>
-      ) : (
-        <Grid item xs={12} style={{ margin: 5 }}>
-          <Button
-            variant="text"
-            color="primary"
-            onClick={props.undoAll}
-            disabled={!props.undoAll}
-            title="Revert changes"
-          >
-            <RestorePage
-              nativeColor={props.undoAll ? '#303F9F' : '#bbb'}
-              style={{ marginRight: 20 }}
-            />
-            Revert changes
-          </Button>
-        </Grid>
-      )}
+      ) : null
+      // (
+      //   <Grid item xs={12} style={{ margin: 5 }}>
+      //     <Button
+      //       variant="text"
+      //       color="primary"
+      //       onClick={props.undoAll}
+      //       disabled={!props.undoAll}
+      //       title="Revert changes"
+      //     >
+      //       <RestorePage
+      //         nativeColor={props.undoAll ? '#303F9F' : '#bbb'}
+      //         style={{ marginRight: 20 }}
+      //       />
+      //       Revert changes
+      //     </Button>
+      //   </Grid>
+      // )
+      }
     </Grid>
   </div>
 );

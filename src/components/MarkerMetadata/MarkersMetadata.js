@@ -88,10 +88,12 @@ export default function MarkersMetadata(props) {
       columns={columns}
       data={markers}
       options={{
+          search: false,
           sorting: true,
           filtering: true,
           actionsColumnIndex: -1,
-          pageSize: 20,
+          paging: false,
+          // pageSize: 20,
           padding: "dense",
           cellStyle: {
             height: '30px !important',

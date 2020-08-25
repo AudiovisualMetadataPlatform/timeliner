@@ -13,7 +13,7 @@ const MarkerModal = ({
   currentTime,
   onAddMarker,
 }) => {  
-  console.log("Inside MarkerModal, visible = " + visible + ", currentTime = " + currentTime);
+  // console.log("Inside MarkerModal, visible = " + visible + ", currentTime = " + currentTime);
 
   const [label, setLabel] = React.useState('');
   const [summary, setSummary] = React.useState('');
@@ -23,11 +23,11 @@ const MarkerModal = ({
     displayMarkerModal(false);
     setLabel('');
     setSummary('');
-    console.log("Inside closeDialog after closing, visible = " + visible);
+    // console.log("Inside closeDialog after closing, visible = " + visible);
   };
 
   const onConfirm = () => {
-    console.log("Inside onConfirm before closing, visible = " + visible + ", label = " + label + ", summary = " + summary);
+    // console.log("Inside onConfirm before closing, visible = " + visible + ", label = " + label + ", summary = " + summary);
     onAddMarker(label, summary, currentTime);
     closeDialog();
   };

@@ -7,6 +7,7 @@ import TimelineMarker from '../TimelineMarker/TimelineMarker';
 import PlayHead from '../Playhead/Playhead';
 
 import './TimelineScrubber.scss';
+import { FileText } from 'react-feather';
 
 const $style = BEM.block('timeline-scrubber');
 
@@ -161,6 +162,17 @@ class TimelineScrubber extends Component {
     const { isHovering, hoverTime } = this.state;
 
     return (
+      <div style={{
+          height: '36px',
+          background: '#ddd',
+          borderTop: 'solid',
+          borderBottom: 'solid',
+          borderColor: 'mediumblue',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+        }}
+      >
       <div
         ref={ref => (this.container = ref)}
         className={$style}
@@ -173,6 +185,7 @@ class TimelineScrubber extends Component {
         style={{
           marginLeft: -x,
           width: width * zoom,
+          position: 'relative',
         }}
       >
         {Object.values(markers).map((marker, markerIndex) => (
@@ -243,6 +256,7 @@ class TimelineScrubber extends Component {
         >
           {hoverTime}
         </div>
+      </div>
       </div>
     );
   }

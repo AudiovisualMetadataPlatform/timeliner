@@ -63,7 +63,7 @@ const project = (state = DEFAULT_PROJECT_STATE, action) => {
       });
 
     case EXPORT_DOCUMENT:
-    case SAVE_PROJECT:
+    case SAVE_PROJECT: //console.log("inside SAVE_PROJECT:");
     default:
       return state;
   }

@@ -61,6 +61,43 @@ const Metadata = props => {
 
   return (
     <div className="metadata">
+      <div className="metadata__project">
+        <div className="metadata__project-content">
+          {/* <Typography
+            variant="subtitle1"
+            color="textSecondary"
+            style={{ marginBottom: 10 }}
+          >
+            Timeline information
+          </Typography> */}
+          <div className="metadata__content">
+            {props.projectMetadataEditorOpen ? (
+              <ProjectMetadataEditor
+                manifestLabel={props.manifestLabel}
+                manifestSummary={props.manifestSummary}
+                onSave={props.onSaveProjectMetadata}
+                onCancel={props.onCancelEditingProjectMetadata}
+              />
+            ) : (
+              <ProjectMetadataDisplay
+                manifestLabel={props.manifestLabel}
+                manifestSummary={props.manifestSummary}
+                homepage={props.homepage}
+                homepageLabel={props.homepageLabel}
+                noSourceLink={props.noSourceLink}
+                onEditClick={props.onEditProjectMetadata}
+                onSaveButtonClicked={props.onSaveButtonClicked}
+                onEraseButtonClicked={props.onEraseButtonClicked}
+                url={props.url}
+                canSave={props.canSave}
+                canErase={props.canErase}
+                undoAll={props.undoAll}
+                hasResource={props.hasResource}
+              />
+            )}
+          </div>
+        </div>
+      </div>
       <div className="metadata__annotations">
         <div className="metadata__annotations-content">
           {/* <Typography
@@ -108,43 +145,6 @@ const Metadata = props => {
               onDeleteMarker={marker => props.deleteMarker(marker.id)}
               onGoToMarker={marker => props.setCurrentTime(marker.time)}
             />
-          </div>
-        </div>
-      </div>
-      <div className="metadata__project">
-        <div className="metadata__project-content">
-          {/* <Typography
-            variant="subtitle1"
-            color="textSecondary"
-            style={{ marginBottom: 10 }}
-          >
-            Timeline information
-          </Typography> */}
-          <div className="metadata__content">
-            {props.projectMetadataEditorOpen ? (
-              <ProjectMetadataEditor
-                manifestLabel={props.manifestLabel}
-                manifestSummary={props.manifestSummary}
-                onSave={props.onSaveProjectMetadata}
-                onCancel={props.onCancelEditingProjectMetadata}
-              />
-            ) : (
-              <ProjectMetadataDisplay
-                manifestLabel={props.manifestLabel}
-                manifestSummary={props.manifestSummary}
-                homepage={props.homepage}
-                homepageLabel={props.homepageLabel}
-                noSourceLink={props.noSourceLink}
-                onEditClick={props.onEditProjectMetadata}
-                onSaveButtonClicked={props.onSaveButtonClicked}
-                onEraseButtonClicked={props.onEraseButtonClicked}
-                url={props.url}
-                canSave={props.canSave}
-                canErase={props.canErase}
-                undoAll={props.undoAll}
-                hasResource={props.hasResource}
-              />
-            )}
           </div>
         </div>
       </div>
