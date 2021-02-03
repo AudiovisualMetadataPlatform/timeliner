@@ -374,6 +374,12 @@ function* saveProject() {
   const outputJSON = exporter(state);
 
   try {
+    // TODO 
+    // Logically, setSavedMarkers should be done after saveResource completes in success;
+    // however, anything after yield call(...) doesn't get executed; below 2 lines is a tmp work-around for now.
+    yield put(setSavedMarkers());
+    console.log("Successfully saved project, setSavedMarkers: " + state.markers.saved);
+
     yield call(saveResource, callback, outputJSON);
     yield showConfirmation('Saved Successfully.', false);
 
