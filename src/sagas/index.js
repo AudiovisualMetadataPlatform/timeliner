@@ -337,9 +337,12 @@ function saveResource(url, content) {
     http.onreadystatechange = () => {
       if (http.readyState === http.DONE) {
         if (200 <= http.status && http.status <= 299) {
-          // reload parent widow to location of newly created timeline
-          if (document.referrer !== http.getResponseHeader('location')) {
-            reject({ redirect_location: http.getResponseHeader('location') });
+          var location = http.getResponseHeader('Location');
+          // if callback response has no header Location, that means saving to the same resource, no need to redirect
+          if (location == null) return;
+          // otherwise reload parent widow to location of newly created timeline
+          if (document.referrer !== location) {
+            reject({ redirect_location: location});
             return;
           }
           resolve();
@@ -371,20 +374,8 @@ function* saveProject() {
   const outputJSON = exporter(state);
 
   try {
-    // // console.log("Saving project:" + outputJSON);
-
-    // TODO 
-    // Logically, setSavedMarkers should be done after saveResource completes in success;
-    // however, the callback to AMPPD currently returns error "Refused to get unsafe header "location" due to missing security feature 
-    // (even though the save actually completes in success on server); this means that setSavedMarkers after saveResource 
-    // will not be executed as the control would go into the catch block; below is a tmp work-around for now.
-    yield put(setSavedMarkers());
-    console.log("Successfully saved project, setSavedMarkers: " + state.markers.saved);
-
     yield call(saveResource, callback, outputJSON);
-    // console.log("Done saveResource");
     yield showConfirmation('Saved Successfully.', false);
-    // console.log("Done showConfirmation");
 
     // TODO 
     // Theoretically, we should set saved status for all other edits as well, such as project metadata; 
