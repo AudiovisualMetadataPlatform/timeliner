@@ -114,7 +114,6 @@ export default function MarkersMetadata(props) {
       actions={[
         {
           icon: () => <ArrowForward />,
-          tooltip: 'Go To Marker',
           onClick: (event, rowData) => {
             onGoToMarker(rowData)
           }
