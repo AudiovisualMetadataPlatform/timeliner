@@ -86,6 +86,7 @@ export default function reducer(state = DEFAULT_STATE, action) {
         saved: { $set: false }, // unset saved status after each edit
       });
     case SHOW_MARKERS:
+      console.log("show markers: ");
       return update(state, {
         visible: { $set: true },
       });
@@ -94,10 +95,12 @@ export default function reducer(state = DEFAULT_STATE, action) {
         visible: { $set: false },
       });
     case SELECT_MARKER:
+      console.log("select markers: ");
       return update(state, {
         selected: { $push: [action.payload.id] },
       });
     case DESELECT_MARKER:
+      console.log("DESELECT_MARKER markers: ");
       const index = state.selected.indexOf(action.payload.id);
       if (index === -1) {
         return state;

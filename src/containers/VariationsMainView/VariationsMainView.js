@@ -119,6 +119,8 @@ class VariationsMainView extends React.Component {
           root: {
             paddingTop: '0 !important',
             paddingBottom: '0 !important',
+            marginTop: '5px !important',
+            marginBottom: '5px !important'
           },
         },
         MuiTablePagination: {
@@ -318,16 +320,13 @@ class VariationsMainView extends React.Component {
             <div className="variations-app__metadata-editor">
               <ProjectMetadata
                 colourPalette={colourPalette}
-                currentTime={currentTime}
                 runTime={runTime}
                 manifestLabel={manifestLabel}
                 manifestSummary={manifestSummary}
                 homepage={homepage}
                 homepageLabel={homepageLabel}
                 noSourceLink={noSourceLink}
-                ranges={_points}
                 onEdit={this.props.editMetadata}
-                rangeToEdit={rangeToEdit}
                 onUpdateRange={this.props.updateRange}
                 blackAndWhiteMode={this.props.settings[PROJECT.BLACK_N_WHITE]}
                 projectMetadataEditorOpen={this.props.showMetadataEditor}

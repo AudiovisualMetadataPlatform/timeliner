@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 
@@ -13,26 +13,14 @@ import MarkersMetadata from '../MarkerMetadata/MarkersMetadata';
 
 const fix = num => parseInt((num || 0).toFixed(0), 10);
 
-function getCurrentRanges(currentTime, ranges) {
-  return ranges
-    .filter(
-      range =>
-        fix(range.startTime) <= fix(currentTime) &&
-        fix(range.endTime) > fix(currentTime)
-    )
-    .sort((a, b) => b.endTime - b.startTime - (a.endTime - a.startTime));
-}
-
-const getLastRange = ranges =>
-  ranges[ranges.length - 1] || { startTime: -Infinity, endTime: Infinity };
-const getMinStartTime = ranges => Math.min(...ranges.map(r => r.startTime));
-const getMaxEndTime = ranges => Math.max(...ranges.map(r => r.endTime));
 const getMarkers = (markers, min, max) =>
   Object.values(markers)
     .filter(marker => marker.time >= min && marker.time < max)
     .sort((a, b) => a.time - b.time);
 
 const Metadata = props => {
+  console.log("get current ranges 2");
+  /*
   const rangesToShow = getCurrentRanges(props.currentTime, props.ranges);
   const lastRange = getLastRange(rangesToShow);
 
@@ -45,19 +33,8 @@ const Metadata = props => {
   const max = props.showAllParentMarkers
     ? getMaxEndTime(rangesToShow)
     : lastRange.endTime;
-
-  const markers = getMarkers(props.markers, min, max);
-
-  const currentMarker = [...markers]
-    .sort((a, b) => {
-      return (
-        Math.abs(props.currentTime - b.time) -
-        Math.abs(props.currentTime - a.time)
-      );
-    })
-    .pop();
-
-  const colours = props.colourPalette.colours;
+  */
+  const markers = useMemo(()=>Object.values(props.markers), [props.markers]);
 
   return (
     <div className="metadata">
@@ -162,10 +139,6 @@ Metadata.propTypes = {
   noSourceLink: PropTypes.bool,
   /** Total runtime of manifest */
   runTime: PropTypes.number.isRequired,
-  /** Current time */
-  currentTime: PropTypes.number.isRequired,
-  /** Range to edit */
-  rangeToEdit: PropTypes.string,
   /** Activates edit mode */
   onEdit: PropTypes.func,
   /** handles update range */
@@ -174,18 +147,6 @@ Metadata.propTypes = {
   onDeleteRange: PropTypes.func,
   /** Cancels range edit */
   onCancelRangeEdit: PropTypes.func,
-  /** Array of Ranges */
-  ranges: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      label: PropTypes.string,
-      summary: PropTypes.string,
-      startTime: PropTypes.number.isRequired,
-      endTime: PropTypes.number.isRequired,
-      depth: PropTypes.number,
-      colour: PropTypes.string,
-    }).isRequired
-  ).isRequired,
   /** Black and white mode */
   blackAndWhiteMode: PropTypes.bool,
   projectMetadataEditorOpen: PropTypes.bool,

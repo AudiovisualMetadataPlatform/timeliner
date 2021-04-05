@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, {useCallback} from 'react';
 import formatDate from 'date-fns/format';
 import MaterialTable from 'material-table';
 import ArrowForward from '@material-ui/icons/ArrowForward';
@@ -80,7 +80,12 @@ export default function MarkersMetadata(props) {
     const format = timeOffset >= 3600000 ? 'hh:mm:ss.SS' : 'mm:ss.SS';
     return formatDate(date, format);
   };
-
+  const b = useCallback(
+    (event, rowData) => {
+      onGoToMarker(rowData)
+    },
+    [],
+  );
   return (
     <MaterialTable
       icons={tableIcons}
@@ -113,11 +118,9 @@ export default function MarkersMetadata(props) {
       }}
       actions={[
         {
-          icon: () => <ArrowForward />,
-          tooltip: 'Go To Marker',
-          onClick: (event, rowData) => {
-            onGoToMarker(rowData)
-          }
+          icon: () => <ArrowForward/>,
+          tooltip: 'Go',
+          onClick: b
         }
       ]}      
       editable={{
