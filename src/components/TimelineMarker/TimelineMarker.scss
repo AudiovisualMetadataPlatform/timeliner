@@ -61,6 +61,32 @@
     }
   }
 
+  &--go {
+    position: relative !important;
+    margin: 0px !important;
+    background: transparent;
+    background: url('./timeline-marker.svg') no-repeat top left;
+    background-size: contain;
+    width: 26px;
+    height: 26px;
+    cursor: pointer !important;
+
+
+    &:active {
+      box-shadow: none;
+      transform: scale(1.5) translateY(10px);
+
+      &:after {
+        content: '';
+        position: absolute;;
+        background: rgba(#000, .5);
+        width: 1px;
+        height: 16px;
+        top: -5px;
+        left: 19px;
+      }
+    }
+  }
   &__tooltip {
     position: absolute;
     top: 15px;

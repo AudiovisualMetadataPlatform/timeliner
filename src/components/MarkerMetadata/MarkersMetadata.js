@@ -6,6 +6,7 @@ import ArrowForward from '@material-ui/icons/ArrowForward';
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import ArrowDropUp from '@material-ui/icons/ArrowDropUp';
 import Check from '@material-ui/icons/Check';
 import ChevronLeft from '@material-ui/icons/ChevronLeft';
 import ChevronRight from '@material-ui/icons/ChevronRight';
@@ -113,7 +114,7 @@ export default function MarkersMetadata(props) {
       }}
       actions={[
         {
-          icon: () => <ArrowForward />,
+          icon: () => <ArrowDropUp class="timeline-marker timeline-marker--go"/>,
           onClick: (event, rowData) => {
             onGoToMarker(rowData)
           }

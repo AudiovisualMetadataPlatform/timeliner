@@ -111,7 +111,7 @@ class AudioTransportBar extends Component {
 
     const displayMarkerModal = (visible) => {
       this.markerModalVisible = visible;
-      this.forceUpdate();
+      //this.forceUpdate();
       // console.log("calling displayMarkerModal in AudioTransport, markerModalVisible = " + this.markerModalVisible);
     };
 
