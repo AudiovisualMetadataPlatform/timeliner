@@ -12,7 +12,7 @@
     "docz:dev": "docz dev",
     "docz:build": "docz build",
     "watch": "fesk-watch",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {

@@ -40,7 +40,7 @@ const MarkerModal = ({
         <TextField autoFocus label="Text" value={label} onChange={e => setLabel(e.target.value)}/>
         <TextField label="Type" value={summary} onChange={e => setSummary(e.target.value)} />       
       </DialogContent>
-      <DialogActions>}
+      <DialogActions>
         <Button color="primary" onClick={closeDialog}>
           Cancel
         </Button>
