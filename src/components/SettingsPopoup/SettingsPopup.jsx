@@ -30,8 +30,7 @@ const ColourPaletteSwitcher = ({ currentKey, onChange }) => {
   return (
     <div
       onClick={() => setOpen(!isOpen)}
-      style={{ position: 'relative' }}
-      style={{ marginTop: 16 }}
+      style={{ position: 'relative',  marginTop: 16}}
     >
       {Object.keys(colourPalettes).map(key => {
         const pallet = colourPalettes[key];
