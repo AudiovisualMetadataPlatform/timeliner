@@ -1,6 +1,6 @@
 {
   "name": "iiif-timeliner",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "git@github.com:digirati-co-uk/timeliner.git",
   "author": "Stephen Fraser <stephen.fraser@digirati.com>",
